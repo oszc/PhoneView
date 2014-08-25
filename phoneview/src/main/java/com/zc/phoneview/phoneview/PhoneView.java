@@ -66,7 +66,6 @@ public class PhoneView extends EditText {
             } else {
                 delete = false;
             }
-
         }
 
         @Override

@@ -1,17 +1,39 @@
 package com.zc.phoneview.phoneview;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    @InjectView(R.id.pv)
+    PhoneView mPv;
+    @InjectView(R.id.tv)
+    TextView mTv;
+    @InjectView(R.id.bt)
+    Button mBt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.inject(this);
+        //    mPv.setFilters(new InputFilter[]{new PhoneFilter()});
+
+        mPv.setTextListener(new PhoneView.OnPhoneChangeListener() {
+            @Override
+            public void onChange(String s) {
+                mTv.setText(s);
+            }
+        });
+
     }
 
 
